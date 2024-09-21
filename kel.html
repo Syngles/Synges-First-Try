@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    .container {
+      width: 300px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Login</h2>
+    <form action="login-check.html" method="post">
+      <label for="username">Username:</label>
+      <input type="text" id="username" name="username" required><br><br>
+      <label for="password">Password:</label>
+      <input type="password" id="password" name="password" required><br><br>
+      <input type="submit" value="Login">
+    </form>
+  </div>
+</body>
+</html>
+```
+
+
+*login-check.html*
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login Check</title>
+  <script>
+    function checkLogin() {
+      var username = document.forms["loginForm"]["username"].value;
+      var password = document.forms["loginForm"]["password"].value;
+      
+      var validUsers = ["Kelvin", "Lilglee", "Vangel", "Venom", "Habibi", "Sir Kwame"];
+      var validPassword = "ipmc@22$";
+      
+      if (validUsers.includes(username) && password === validPassword) {
+        alert("Login Successful!");
+        window.location.href = "welcome.html";
+      } else {
+        alert("Invalid username or password!");
+        window.location.href = "login.html";
+      }
+    }
+  </script>
+</head>
+<body>
+  <form name="loginForm" action="" method="post" onsubmit="checkLogin()">
+    <input type="hidden" id="username" name="username" value>
+    <input type="hidden" id="password" name="password" value>
+    <input type="submit" style="display: none;">
+  </form>
+  
+  <script>
+    var urlParams = new URLSearchParams(window.location.search);
+    document.getElementById("username").value = urlParams.get("username");
+    document.getElementById("password").value = urlParams.get("password");
+    document.forms["loginForm"].submit();
+  </script>
+</body>
+</html>
+```
+
+
+*welcome.html*
+```
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Welcome</title>
+</head>
+<body>
+  <h1>Login Successful!</h1>
+  <p>What Are You Doing Here?</p>
+  <button onclick="window.location.href='login.html'">Logout</button>
+</body>
+</html>
+```
